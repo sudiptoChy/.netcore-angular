@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\myApp-SPA",
+    "\\myApp-SPA\\src",
+    "\\myApp-SPA\\src\\app",
+    "\\myApp-SPA\\src\\app\\_guards",
+    "\\myApp.API\\Controllers"
+  ],
+  "SelectedNode": "\\myApp-SPA\\src\\app\\_guards\\auth.guard.ts",
+  "PreviewInSolutionExplorer": false
+}
