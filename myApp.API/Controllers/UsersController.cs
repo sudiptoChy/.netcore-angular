@@ -25,7 +25,7 @@ namespace myApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUses()
+        public async Task<IActionResult> GetUsers()
         {
             var users = await _repo.GetUsers();
 
@@ -34,7 +34,7 @@ namespace myApp.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);
