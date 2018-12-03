@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using myApp.API.Data;
 using myApp.API.Dtos;
+using myApp.API.Helpers;
 
 namespace myApp.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -17,7 +19,6 @@ namespace myApp.API.Controllers
     {
         private readonly IDatingRepository _repo;
         private readonly IMapper _mapper;
-
         public UsersController(IDatingRepository repo, IMapper mapper)
         {
             this._repo = repo;
