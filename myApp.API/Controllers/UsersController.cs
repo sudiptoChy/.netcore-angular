@@ -13,7 +13,7 @@ namespace myApp.API.Controllers
 {
     [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -28,6 +28,17 @@ namespace myApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery] UserParams UserParams)
         {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var userFromRepo = await _repo.GetUser(currentUserId);
+
+            UserParams.UserId = currentUserId;
+
+            if(string.IsNullOrEmpty(UserParams.Gender))
+            {
+                UserParams.Gender = userFromRepo.Gender == "male" ? "female" : "male";
+            }
+
             var users = await _repo.GetUsers(UserParams);
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
